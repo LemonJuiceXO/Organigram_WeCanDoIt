@@ -1,0 +1,38 @@
+/* Apply some basic styles to the form */
+form {
+    max-width: 600px; /* Adjust the maximum width as needed */
+    margin: auto; /* Center the form horizontally */
+    padding: 20px;
+    background-color: red; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Style the form groups and input fields */
+.form-group {
+    margin-bottom: 20px; /* Add some space between form groups */
+}
+
+/* Style the labels */
+label {
+    font-weight: bold;
+    color: #333; /* Dark gray color */
+}
+
+/* Style the checkboxes */
+.form-check-input {
+    margin-top: 0.3rem; /* Adjust the alignment of the checkbox */
+}
+
+/* Style the submit button */
+.btn-primary {
+    width: 100%; /* Make the button full-width */
+    margin-top: 20px; /* Add some space between the button and the last form group */
+    background-color: blue; /* Red background */
+    border-color: blue; /* Red border */
+}
+
+    /* Hover effect for the submit button */
+    .btn-primary:hover {
+        background-color: #cc0000; /* Darker red on hover */
+        border-color: #cc0000; /* Darker red border on hover */
+    }

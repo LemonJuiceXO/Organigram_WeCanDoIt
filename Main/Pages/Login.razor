@@ -1,0 +1,77 @@
+﻿@* @page "/Login"
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<form method="post">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+    </div>
+    <button type="submit">Sign in</button>
+</form>
+
+@if (Model.ErrorMessage != null)
+{
+    <p>@Model.ErrorMessage</p>
+}
+ *@
+
+
+@page "/Login"
+ @using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Forms
+<div>
+    <h3>Login</h3>
+
+    <EditForm Model="@this" OnValidSubmit="@OnSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="Username">Username</label>
+            <InputText id="Username" @bind-Value="@Username" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <InputText id="Password" @bind-Value="@Password" class="form-control" type="password" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+
+        @if (!string.IsNullOrEmpty(ErrorMessage))
+        {
+            <div class="alert alert-danger">@ErrorMessage</div>
+        }
+    </EditForm>
+</div>
+
+@* @code {
+    private string Username { get; set; }
+    private string Password { get; set; }
+    private string ErrorMessage { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    private void OnSubmit()
+    {
+        if (Username == "user" && Password == "password")
+        {
+            NavigationManager.NavigateTo("/Index");
+        }
+        else
+        {
+            ErrorMessage = "Invalid username or password.";
+        }
+    }
+}
+ *@

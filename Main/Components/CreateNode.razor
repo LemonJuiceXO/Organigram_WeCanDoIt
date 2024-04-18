@@ -1,0 +1,76 @@
+﻿@page "/CreateNode"
+
+@using Microsoft.AspNetCore.Components
+@using System.ComponentModel.DataAnnotations
+
+@typeparam TModel where TModel : class
+
+@* @{
+    ViewData["Title"] = "CreateNode";
+} *@
+
+<h1>Create Node</h1>
+
+@* <h2>@ViewData["Title"]</h2> *@
+
+@* <form method="post" @onsubmit="(() => OnSubmit(NavigationManager))">
+ *@
+<form method="post" @onsubmit="OnSubmit">
+
+ <div class="form-group">
+        <label for="FirstName">First Name:</label>
+        <input id="FirstName" @* @bind="@Model.FirstName" *@ class="form-control" />
+       @*  <ValidationMessage For="@(() => Model.FirstName)" class="text-danger" /> *@
+    </div>
+
+    <div class="form-group">
+        <label for="LastName">Last Name:</label>
+        <input id="LastName" @* @bind="@Model.LastName"  *@class="form-control" />
+       @*  <ValidationMessage For="@(() => Model.LastName)" class="text-danger" /> *@
+    </div>
+
+    <div class="form-group">
+        <label for="Address">Address:</label>
+        <input id="Address"@*  @bind="@Model.Address" *@ class="form-control" />
+      @*   <ValidationMessage For="@(() => Model.Address)" class="text-danger" /> *@
+    </div>
+
+    <div class="form-group">
+        <label for="Telephone">Telephone:</label>
+        <input id="Telephone" @* @bind="@Model.Telephone" *@ class="form-control" />
+       @*  <ValidationMessage For="@(() => Model.Telephone)" class="text-danger" /> *@
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+@code {
+    public Model Model { get; set; } = new Model();
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    private async Task OnSubmit()
+    {
+        var isValid = await ValidateForm();
+        if (!isValid)
+            return;
+        NavigationManager.NavigateTo("/SuccessPage");
+    }
+
+
+    private async Task<bool> ValidateForm()
+    {
+        var validationContext = new ValidationContext(Model);
+        var validationResults = new List<ValidationResult>();
+
+        if (!Validator.TryValidateObject(Model, validationContext, validationResults, true))
+        {
+            // Handle validation errors
+            // You can display the errors or handle them in any other way
+            return false;
+        }
+
+        return true;
+    }
+}
