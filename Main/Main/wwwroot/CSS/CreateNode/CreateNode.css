@@ -1,0 +1,40 @@
+
+
+.create-node-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 100vh;
+    background: linear-gradient(to top, #27b776, #18669d);
+}
+
+@keyframes animate-container-show {
+    from{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0); 
+    }
+}
+.create-node-container-content{
+    background-color: rgba(255, 255, 255, 0.72);
+    width: 60%;
+    height: 70%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+   /* animation: animate-container-show 1s ease-in-out;*/
+    padding-top: 20px;
+}
+.select-node-type{
+    border: 1px black solid;
+    background: white;
+    width: 300px;
+    height: 40px;
+    text-align: center;
+}

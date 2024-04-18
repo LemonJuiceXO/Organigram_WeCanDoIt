@@ -1,0 +1,33 @@
+
+
+.form-container{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, #1aa48b, #0080ff);
+    display: grid;
+    grid-template-columns: auto ;
+}
+.form-content{
+    background-color: rgba(0, 0, 0, 0.72);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    position: relative;
+    width: 60rem;
+    height: 30rem;
+}
+.select-node{
+    border: 1px black solid;
+    border-radius: 5px;
+    width: 400px;
+}
+
+.node-name{
+    border: 1px black solid;
+    border-radius: 5px;
+}
