@@ -1,0 +1,34 @@
+.person-layout-container{
+    width: fit-content;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 70%;
+    background: #18669d;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.person-layout-container label{
+    color: white;
+}
+.person-layout-container:hover .person-role{
+    opacity: 1;
+}
+.person-role{
+    width: 100%;
+    color: white;
+    position: relative;
+    top: 20px;
+    opacity: 0;
+    padding: 5px;
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 300ms ease-in-out;
+    text-align: center;
+}

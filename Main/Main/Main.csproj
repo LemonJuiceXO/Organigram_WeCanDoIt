@@ -7,6 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Implementations\Implementations.csproj" />
+      <ProjectReference Include="..\..\Interfaces\Interfaces.csproj" />
       <ProjectReference Include="..\..\UIComponents\Components\Components.csproj" />
     </ItemGroup>
 

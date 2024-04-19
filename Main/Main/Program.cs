@@ -1,10 +1,15 @@
 using Main.Comps;
+using Org.Apps;
+using Org.Impl;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddScoped<INodeService, NodeService>();
+builder.Services.AddScoped<IOrgTypeService, OrgTypeService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
 
 var app = builder.Build();
 
