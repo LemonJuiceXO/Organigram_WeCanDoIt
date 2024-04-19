@@ -85,7 +85,9 @@ input:active{
     border-radius: 5px;
     width: 100%;
     height: 100%;
-    overflow: scroll;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
     display: flex;
     align-items: center;
     justify-content: start;
