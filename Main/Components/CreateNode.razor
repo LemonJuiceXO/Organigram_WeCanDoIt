@@ -3,7 +3,7 @@
 @using Microsoft.AspNetCore.Components
 @using System.ComponentModel.DataAnnotations
 
-@typeparam TModel where TModel : class
+@* @typeparam Model *@
 
 @* @{
     ViewData["Title"] = "CreateNode";
@@ -15,37 +15,37 @@
 
 @* <form method="post" @onsubmit="(() => OnSubmit(NavigationManager))">
  *@
-<form method="post" @onsubmit="OnSubmit">
+<EditForm Model="model" OnValidSubmit="OnSubmit">
 
  <div class="form-group">
         <label for="FirstName">First Name:</label>
-        <input id="FirstName" @* @bind="@Model.FirstName" *@ class="form-control" />
-       @*  <ValidationMessage For="@(() => Model.FirstName)" class="text-danger" /> *@
+        <input id="FirstName" @bind="@model.FirstName" class="form-control" />
+        <ValidationMessage For="@(() => model.FirstName)" class="text-danger" />
     </div>
 
     <div class="form-group">
         <label for="LastName">Last Name:</label>
-        <input id="LastName" @* @bind="@Model.LastName"  *@class="form-control" />
-       @*  <ValidationMessage For="@(() => Model.LastName)" class="text-danger" /> *@
+        <input id="LastName" @bind="@model.LastName" class="form-control" />
+        <ValidationMessage For="@(() => model.LastName)" class="text-danger" />
     </div>
 
     <div class="form-group">
         <label for="Address">Address:</label>
-        <input id="Address"@*  @bind="@Model.Address" *@ class="form-control" />
-      @*   <ValidationMessage For="@(() => Model.Address)" class="text-danger" /> *@
+        <input id="Address" @bind="@model.Address" class="form-control" />
+        <ValidationMessage For="@(() => model.Address)" class="text-danger" />
     </div>
 
     <div class="form-group">
         <label for="Telephone">Telephone:</label>
-        <input id="Telephone" @* @bind="@Model.Telephone" *@ class="form-control" />
-       @*  <ValidationMessage For="@(() => Model.Telephone)" class="text-danger" /> *@
+        <input id="Telephone" @bind="@model.Telephone" class="form-control" />
+        <ValidationMessage For="@(() => model.Telephone)" class="text-danger" />
     </div>
 
     <button type="submit" class="btn btn-primary">Create</button>
-</form>
+</EditForm>
 
 @code {
-    public Model Model { get; set; } = new Model();
+    public Model model { get; set; } = new Model();
 
     [Inject]
     private NavigationManager NavigationManager { get; set; }
@@ -61,10 +61,10 @@
 
     private async Task<bool> ValidateForm()
     {
-        var validationContext = new ValidationContext(Model);
+        var validationContext = new ValidationContext(model);
         var validationResults = new List<ValidationResult>();
 
-        if (!Validator.TryValidateObject(Model, validationContext, validationResults, true))
+        if (!Validator.TryValidateObject(model, validationContext, validationResults, true))
         {
             // Handle validation errors
             // You can display the errors or handle them in any other way

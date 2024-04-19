@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Main.Components
-{
+{/*
     public partial class CreateNode
     {
         private Model Model { get; set; } = new Model();
@@ -29,5 +29,5 @@ namespace Main.Components
 
             return true;
         }
-    }
+    }*/
 }
