@@ -1,6 +1,7 @@
 ﻿namespace Org.Domains.Nodes;
 
 public class Node
+
 {
     public Guid NodeId { get; set; } = Guid.NewGuid();
     public Guid TypeId { get; set; }
@@ -8,7 +9,7 @@ public class Node
     public string Name { get; set; }
     public List<NodePerson> Persons { get; set; } = new();
     public List<Node> SubNodes { get; set; } = new();
-
+    
     public static Node Create(Guid typeId)
     {
         return new Node
@@ -21,4 +22,5 @@ public class Node
             SubNodes = new List<Node>()
         };
     }
+    
 }

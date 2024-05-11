@@ -1,0 +1,110 @@
+@keyframes navScrolled {
+    from{
+        scale: 0;
+    }
+    to{
+        scale: 1;
+    }
+}
+
+.navStatic{
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #15ad69, #116bab);
+    height: fit-content;
+    padding: 0.5rem;
+}
+
+.navScrolled{
+    animation: navScrolled 300ms ease-in-out forwards;
+    width: 100%;
+    height: 4rem;
+    position: fixed;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0);
+    top: 0.5rem;
+    background-position: center;  
+}
+
+
+.navIcon{
+    width: 3rem;
+    height: 3rem;
+    position: relative;
+    left: 0.5rem;
+}
+nav ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right: 0.5rem;
+    width: 50%;
+    gap: 0.3rem;
+    border: 1px white solid;
+    background-color: rgba(0, 0, 0, 0.77);
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+.selectedTab{
+    flex-grow: 5;
+    background-color: rgb(255, 255, 255);
+}
+
+ .anotherTabIsHovered{
+    background-color: #16a6d2;   
+     border: 1px white solid;
+}
+ 
+ .anotherTabIsHovered >a{
+     color: white !important;
+ }
+ 
+.selectedTab a{
+    color: #000000;
+}
+
+nav ul li{
+    text-align: center;
+    transition: background-color,flex 400ms ease-in-out;
+    list-style: none;
+    flex-grow: 0;
+    width: fit-content;
+    border-radius: 1rem;
+}
+.background{
+    background-color: #0cd782;
+}
+
+
+nav ul a{
+    color: #ffffff;
+    text-decoration: none;
+    position: relative;
+    transition: color 200ms ease-in-out;
+    width: 100%;
+    height: 100%;
+    font-size: 100%;
+    display: block;
+    padding: 1rem;
+}
+nav ul li:hover{
+    flex-grow: 5;
+    background-color: #ffffff;
+}
+
+nav ul li:hover >a {
+color: #000000;
+}
+.navStatic ul{
+    border: none;
+    background-color: transparent;
+}

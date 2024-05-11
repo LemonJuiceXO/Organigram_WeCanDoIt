@@ -18,6 +18,7 @@ public class NodeType
     public Guid Id { get; set; }
     public string Code { get; set; }
     public string Name { get; set; }
+    public bool isRoot { get; set; }
     public List<NodeRole> Roles { get; set; }
     public List<NodeChild> SubNodes { get; set; }
 

@@ -2,11 +2,12 @@
 
 public class NodeChild : IOccurence
 {
-    public NodeChild(Guid childId, int minValue, int maxValue)
+    public NodeChild(Guid childId,string nodeTypeName,int minValue, int maxValue)
     {
         NodeTypeId = childId;
         MinValue = minValue;
         MaxValue = maxValue;
+        NodeTypeName = nodeTypeName;
     }
 
     public NodeChild()
@@ -14,7 +15,7 @@ public class NodeChild : IOccurence
     }
 
     public Guid NodeTypeId { get; set; }
-
+    public string NodeTypeName { get; set; }
     public int MinValue { get; set; }
     public int MaxValue { get; set; }
 }

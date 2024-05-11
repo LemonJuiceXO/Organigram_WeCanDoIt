@@ -1,0 +1,27 @@
+@using Org.Domains.NodeTypes
+
+<head>
+ 
+ <link rel="stylesheet" href="/_content/Components/CSS/CreateNode/AddSubNodeToNode.css"/>
+
+</head>
+
+<div class="add-subnode-container">
+ <div class="add-subnode-container-content">
+ <svg class="close-add-subnode" @onclick="closeAddSubNode" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+
+  <select class="select-subnode" @bind="subNode.TypeId">
+   @foreach (NodeChild nodeType in SubNodes)
+   {
+    <option value="@nodeType.NodeTypeId">@nodeType.NodeTypeName</option>
+   }
+
+  </select>
+
+  <input type="text" placeholder="SubNode Name" class="input-subnode-name" @bind="subNode.Name"/>
+  <input type="text" placeholder="SubNode Code" class="input-subnode-name" @bind="subNode.Code"/>
+
+  <button class="add-subnode-to-node-button" @onclick="addSubNodeToNode">Add</button>
+ </div>
+
+</div>

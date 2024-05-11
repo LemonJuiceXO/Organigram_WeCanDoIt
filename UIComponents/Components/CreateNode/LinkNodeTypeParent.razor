@@ -1,0 +1,21 @@
+
+
+<StandardMenu closeMenu="closeLinkNodeParent" isSucess="false" successDialog="تم الربط بنجاح">
+    <div class="options-menu-content">
+         <select @bind="nodeChild.NodeTypeId">
+        
+                @foreach (var availableNode in targetNodeTypes)
+                {
+                    <option value="@availableNode.Id">@availableNode.Name</option>
+                }
+        
+            </select>
+            <div class="splitter">
+                <input type="number" placeholder="MIN" @bind="nodeChild.MinValue"/>
+                <input type="number" placeholder="MAX" @bind="nodeChild.MaxValue"/>
+            </div>
+            
+            <button class="linkNodeTypeButton" @onclick="LinkNodeType">ربط</button>
+    </div>
+   
+</StandardMenu>

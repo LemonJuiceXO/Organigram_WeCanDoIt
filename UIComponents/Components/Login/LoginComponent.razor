@@ -1,0 +1,29 @@
+@using Microsoft.AspNetCore.Components.Authorization
+@using Org.Apps.Email
+<head>
+    <link rel="stylesheet" href="/_content/Components/LoginPage/LoginPage.css"/>
+</head>
+
+<form method="post" action="/Login/Login" class="LoginContainer">
+    <h1 class="LoginWelcome">Organigram</h1>
+    <div class="LoginPage_content">
+        <div class="LoginFieldsContainer">
+            <input type="text" placeholder="اسم المتسخدم" name="userName" required="required"/>
+            <svg class="loginIcons" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 9.00005L10.2 13.65C11.2667 14.45 12.7333 14.45 13.8 13.65L20 9" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M3 9.17681C3 8.45047 3.39378 7.78123 4.02871 7.42849L11.0287 3.5396C11.6328 3.20402 12.3672 3.20402 12.9713 3.5396L19.9713 7.42849C20.6062 7.78123 21 8.45047 21 9.17681V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V9.17681Z" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> </g></svg>
+        </div>
+        <div class="LoginFieldsContainer">
+            <input id="LoginPasswordField" type="password" placeholder="كلمة المرور" name="userPassword"/>
+            <svg class="loginIcons showPassword" id="showPassword" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.60997 9.60714C8.05503 10.4549 7 12.1043 7 14C7 16.7614 9.23858 19 12 19C13.8966 19 15.5466 17.944 16.3941 16.3878M21 14C21 9.02944 16.9706 5 12 5C11.5582 5 11.1238 5.03184 10.699 5.09334M3 14C3 11.0069 4.46104 8.35513 6.70883 6.71886M3 3L21 21" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+
+        <button>دخول</button>
+    </div>
+    <div class="loginError">
+        
+    </div>
+</form>
+<script src="/_content/Components/JS/LoginPage.js"></script>
+
+

@@ -1,0 +1,152 @@
+.subnode-layout-container{
+    width: 150px;
+    height: fit-content;
+    padding: 5px 30px 30px 30px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;    
+    border-radius: 15px;
+    top: 50%;
+    position: absolute;
+    overflow: visible;
+    cursor: pointer;
+    filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.52));
+    z-index: 2;
+    transition: background-color 200ms ease-in-out ;
+}
+.subnode-layout-container:hover{
+    background-color: #11c7ac;
+}
+.subnode-layout-container:hover >div * {
+    color: white;
+}
+
+
+.line {
+    fill: none;
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke: rgb(0, 0, 0);
+}
+.line-container {
+    width:100%;
+    height: 100%;
+    min-height: fit-content;
+    z-index: 1;
+    position: absolute;
+    pointer-events: none;
+    overflow: visible;
+}
+.node-info{
+    color: #000000;
+    pointer-events: none;
+    border-radius: 5px;
+    width: 140px;
+    text-align: center;
+    position: relative;
+    pointer-events: none;
+}
+
+.subnode-layout-container:hover .person-role{
+    opacity: 1;
+}
+
+.subnode-role{
+    width: 100%;
+    color: white;
+    position: relative;
+    opacity: 0;
+    height: fit-content;
+    top: 15px;
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 300ms ease-in-out;
+    text-align: center;
+}
+@keyframes showMenu {
+    from{
+        opacity: 0;
+        transform: translateY(-50%);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+
+    }
+}
+
+.options-menu{
+    animation: showMenu 800ms ease-in-out;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.71);
+    border-radius: 5px;
+    position: absolute;
+    top: -20px;
+    right: -30px;
+    width: 150px;
+    height: 200px;
+    padding: 10px;
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+}
+.options-menu.hidden{
+    opacity: 0;
+}
+.subnode-layout-container:hover .parent-info ,.subnode-layout-container:hover .manage-container{
+    opacity: 1;
+}
+.parent-info{
+    position: absolute;
+    background-color: #13a489;
+    border-radius: 10px;
+    top: -60px;
+    padding: 15px;
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: 50px;
+}
+
+.manage-container{
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 20px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    transition: opacity 400ms ease-in-out;
+}
+.manage-icons{
+    width: 45px;
+    height: 80%;
+}
+.manage-icons *{
+    stroke: #ffffff;
+    fill: #ffffff;
+    transition: all 100ms ease-in-out;
+}
+.manage-icons > path{
+    stroke: white;
+    color: white;
+}
+.manage-icons:hover *{
+  stroke: #000000;
+    fill: black;
+}
+
+
+
+

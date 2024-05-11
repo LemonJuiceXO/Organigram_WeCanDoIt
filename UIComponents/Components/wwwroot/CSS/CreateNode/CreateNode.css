@@ -2,11 +2,67 @@
 
 .create-node-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5px;
     height: 100vh;
     background: linear-gradient(to top, #27b776, #18669d);
+    padding: 15px;
+   
+}
+
+.add-icon-label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 800ms ease-in-out;
+    position: relative;
+    height: 100%;
+    cursor: pointer;
+}
+
+.add-icon-label:hover{
+    transform: translateY(-2px);
+}
+
+.create-node-label{
+    color: white;
+    background-color: transparent;
+    padding: 0 5px 0 5px;
+    position: relative;
+    top: -10px;
+    border-radius: 10px;
+    transition: all 500ms ease-in-out;
+    opacity: 0;
+}
+.add-icon-label:hover .create-node-label{
+    background-color: #13a489;
+    opacity: 1;
+}
+.add-icon-container{
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 85%;
+    height: 70px;
+    border-radius: 40px;
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nodes-container{
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 80%;
+    height: 80%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: auto;
+    
 }
 
 @keyframes animate-container-show {
@@ -34,13 +90,21 @@
     gap: 10px;
 }
 .add-icon{
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
-    fill: none;
+    fill: white;
+    stroke: black;
+    justify-self: end;
+    
+}
+.add-node-type{
+    cursor: pointer;
+    fill: white;
     stroke: black;
     justify-self: end;
 }
+
 select{
     border: 1px black solid;
     background: white;
@@ -102,11 +166,65 @@ input:active{
     background: #1398a9;
     border-radius: 10px;
     border: none;
-    opacity: 0.5;
     transition: all 500ms ease-in-out;
     cursor: pointer;
-    pointer-events: none;
 }
 .create-node-button:hover{
     background: #13c5dc;
+}
+
+.nodeLineContainer{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.nodeLineContainer *{
+    stroke: black;
+    stroke-width: 1px;
+}
+.createNodeSuccessDialog{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(16, 16, 16, 0.49);
+    z-index: 1000;
+    gap: 1rem;
+}
+
+.createNodeSuccessDialog svg{
+    width: 10rem;
+}
+.createNodeSuccessDialog button{
+    padding: 1rem;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 1rem;
+    transition: color,background-color ease-in-out 300ms;
+    cursor: pointer;
+}
+.createNodeSuccessDialog button:hover{
+    background-color: #0cd782;
+    color: white;
+}
+@keyframes animateLoading {
+    from{
+       transform: rotate(0); 
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+.LoadingIcon{
+    border-top: 5px #ffffff solid;
+    animation: animateLoading infinite forwards ease-in-out 1s;
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
 }

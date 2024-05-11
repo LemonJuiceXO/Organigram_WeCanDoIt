@@ -9,13 +9,17 @@ namespace Components.CreateNode;
 partial class CreateNode
 {
    [Inject] private IOrgTypeService OrgTypeService { get; set; }
+   [Inject] private INodeService NodeService { get; set; }
    private List<NodeType> NodeTypes;
    private NodeType selectedNodeType;
    private bool showAddPersonToNode=false;
-   private List<NodePerson> NodePersons = new();
+   private bool showAddSubNode=false;
+   private Node nodeToCreate=new();
+   
    private async Task selectNodeType(ChangeEventArgs selected)
    {
       Guid nodeTypeId = selected.Value.AsGuid();
+      nodeToCreate.TypeId = nodeTypeId;
       selectedNodeType = NodeTypes.FirstOrDefault(type => type.Id.CompareTo(nodeTypeId)==0 );
    }
    
@@ -24,11 +28,24 @@ partial class CreateNode
       NodeTypes = OrgTypeService.GetNodeTypes().Result;
       selectedNodeType = NodeTypes[0];
    }
-   
-   private async Task addPersonToNode(NodePerson person)
+
+ 
+   private async Task<int> addPersonToNode(NodePerson person)
    {
-      NodePersons.Add(person);
+      nodeToCreate.Persons.Add(person);
       StateHasChanged();
+      return nodeToCreate.Persons.Count(per => per.RoleId.CompareTo(person.RoleId) == 0);
    }
-   
+
+   private async Task<int> addSubNodeToNode(Node subNode)
+   {
+      nodeToCreate.SubNodes.Add(subNode);
+      StateHasChanged();
+      return nodeToCreate.SubNodes.Count(node => node.NodeId == subNode.NodeId);
+   }
+
+   private async Task createNode()
+   {
+      await NodeService.CreateNode(nodeToCreate);
+   }
 }

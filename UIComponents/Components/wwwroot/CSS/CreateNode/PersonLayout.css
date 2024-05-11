@@ -1,5 +1,5 @@
 .person-layout-container{
-    width: fit-content;
+    width: 150px;
     flex-grow: 0;
     flex-shrink: 0;
     height: 70%;
@@ -9,25 +9,28 @@
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    padding: 5px;
     border-radius: 10px;
     position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .person-layout-container label{
     color: white;
+    pointer-events: none;
 }
 .person-layout-container:hover .person-role{
     opacity: 1;
 }
+
 .person-role{
     width: 100%;
     color: white;
     position: relative;
-    top: 20px;
     opacity: 0;
+    height: fit-content;
+    top: 15px;
     padding: 5px;
-    border-radius: 0;
     background: rgba(0, 0, 0, 0.5);
     transition: all 300ms ease-in-out;
     text-align: center;

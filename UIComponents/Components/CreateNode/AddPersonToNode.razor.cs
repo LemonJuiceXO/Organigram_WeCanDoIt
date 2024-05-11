@@ -10,7 +10,9 @@ partial class AddPersonToNode
 {
     [Parameter] public List<NodeRole> roles { get; set; }
     [Parameter] public EventCallback closeForm { get; set; }
-    [Parameter] public EventCallback<NodePerson> addPerson { get; set; }
+    
+    
+    [Parameter] public Func<NodePerson,Task<int>> addPerson { set; get; }
     
     private NodeRole selectedRole;
     
@@ -21,16 +23,32 @@ partial class AddPersonToNode
         selectedRole = roles[0];
         nodePerson=new();
     }
-    
-    
+
+   
     private async Task addPersonToNode()
     {
+       
         nodePerson.PersonId=Guid.NewGuid();
-        nodePerson.RoleName = roles.FirstOrDefault(role => role.RoleId.CompareTo(nodePerson.RoleId) == 0).RoleName;
-        addPerson.InvokeAsync(nodePerson);
+        NodeRole targetRole = roles.FirstOrDefault(role => role.RoleId.CompareTo(nodePerson.RoleId) == 0);
+        nodePerson.RoleName = targetRole.RoleName;
+        
+        int occurances= await addPerson.Invoke(nodePerson);
+      
+        verifyRoleOccurances(targetRole,occurances);
+       
         nodePerson = new();
+        
     }
-    
+
+    private void verifyRoleOccurances(NodeRole role,int occurances)
+    {
+        if (occurances >= role.MaxValue || role.MaxValue == 1)
+        {
+            roles.Remove(role);
+        }
+            
+        
+    }
     private async Task close()
     {
        await closeForm.InvokeAsync();

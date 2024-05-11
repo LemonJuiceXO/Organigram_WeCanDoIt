@@ -1,0 +1,78 @@
+@using Org.Domains.NodeTypes
+@using Org.Apps
+@using Org.Domains.Nodes
+@using Components.CreateNode
+
+
+<head>
+  <link rel="stylesheet" href="/_content/Components/CSS/CreateNode/CreateNode.css"/>  
+</head>
+
+
+@if (showCreateNodeForm)
+{
+    <CreateNodeForm NodeTypes="NodeTypes" close="closeCreateNodeForm" createNode="addNodeToList"></CreateNodeForm>
+}
+
+<div class="create-node-container">
+    <div class="add-icon-container">
+        <div class="add-icon-label">
+            <label class="create-node-label">CREATE NODE TYPE</label>
+            <svg class="add-node-type" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M20.9999 9.88379C21.0033 9.63406 20.8823 9.3827 20.636 9.23825L13.1419 4.84334C12.4534 4.43956 11.6007 4.43847 10.9111 4.84047L3.36938 9.23727C3.12196 9.38152 3.00042 9.63347 3.00386 9.88379H2.99995V14.3148H3.00408C3.01115 14.5585 3.13674 14.7991 3.38001 14.9355L10.9431 19.1778C11.6163 19.5554 12.4378 19.5543 13.11 19.175L20.6253 14.9346C20.8675 14.7979 20.9926 14.5579 20.9996 14.3148L20.9999 9.88379ZM4.76444 10.4474C4.58407 10.3456 4.35534 10.4093 4.25357 10.5897C4.15179 10.7701 4.21551 10.9988 4.39589 11.1006L10.7548 14.6885C11.5471 15.1355 12.516 15.1331 13.306 14.6823L19.5841 11.0997C19.7639 10.997 19.8265 10.768 19.7239 10.5881C19.6212 10.4083 19.3922 10.3456 19.2123 10.4483L12.9343 14.0309C12.3735 14.3509 11.6857 14.3526 11.1234 14.0353L4.76444 10.4474Z" fill="#ffffff"></path> </g></svg>
+        </div>
+        
+        <div class="add-icon-label">
+            <label class="create-node-label">ADD NODE</label>
+            <svg @onclick="showCreateNode" class="add-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M2.06935 5.00839C2 5.37595 2 5.81722 2 6.69975V13.75C2 17.5212 2 19.4069 3.17157 20.5784C4.34315 21.75 6.22876 21.75 10 21.75H14C17.7712 21.75 19.6569 21.75 20.8284 20.5784C22 19.4069 22 17.5212 22 13.75V11.5479C22 8.91554 22 7.59935 21.2305 6.74383C21.1598 6.66514 21.0849 6.59024 21.0062 6.51946C20.1506 5.75 18.8345 5.75 16.2021 5.75H15.8284C14.6747 5.75 14.0979 5.75 13.5604 5.59678C13.2651 5.5126 12.9804 5.39471 12.7121 5.24543C12.2237 4.97367 11.8158 4.56578 11 3.75L10.4497 3.19975C10.1763 2.92633 10.0396 2.78961 9.89594 2.67051C9.27652 2.15704 8.51665 1.84229 7.71557 1.76738C7.52976 1.75 7.33642 1.75 6.94975 1.75C6.06722 1.75 5.62595 1.75 5.25839 1.81935C3.64031 2.12464 2.37464 3.39031 2.06935 5.00839ZM12 11C12.4142 11 12.75 11.3358 12.75 11.75V13H14C14.4142 13 14.75 13.3358 14.75 13.75C14.75 14.1642 14.4142 14.5 14 14.5H12.75V15.75C12.75 16.1642 12.4142 16.5 12 16.5C11.5858 16.5 11.25 16.1642 11.25 15.75V14.5H10C9.58579 14.5 9.25 14.1642 9.25 13.75C9.25 13.3358 9.58579 13 10 13H11.25V11.75C11.25 11.3358 11.5858 11 12 11Z" fill="white"></path> </g></svg>
+        </div>
+    </div>
+
+    <div class="nodes-container" id="listNodes">
+       
+            @foreach (var node in OrganigramNodes)
+                
+                  {
+                      <SubNodeLayout subNode="node" nodes="OrganigramNodes" ></SubNodeLayout>
+                  }  
+   
+      
+    </div>
+    
+</div>
+
+@code {
+    private EventCallback<List<Node>> nodesChanged;
+    private bool showCreateNodeForm=false;
+    private List<NodeType> NodeTypes;
+    [Inject] private IOrgTypeService OrgTypeService { get; set; }
+    private List<Node> OrganigramNodes=new ();
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await getNodeTypes();
+    }
+
+    
+
+    private async Task addNodeToList(Node node)
+    {
+        OrganigramNodes.Add(node);
+        nodesChanged.InvokeAsync(OrganigramNodes);
+        StateHasChanged();
+    }
+    private async Task getNodeTypes()
+    {
+        NodeTypes=OrgTypeService.GetNodeTypes().Result;
+    }
+
+    private async Task showCreateNode()
+    {
+        showCreateNodeForm = true;
+    }
+    
+
+    private async Task closeCreateNodeForm()
+    {
+        showCreateNodeForm = false;
+    }
+}

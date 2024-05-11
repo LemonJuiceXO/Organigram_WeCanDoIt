@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using IAGE.Shared;
 using Microsoft.Data.SqlClient;
+using Org.Domains.NodeTypes;
 using Org.Domains.Persons;
 
 namespace Org.Storages;
@@ -24,7 +25,7 @@ public class RoleStorage
         this.connectionString = connectionString;
     }
 
-    public async ValueTask<bool> InsertRole(Role role)
+    public async ValueTask<bool> InsertRole(NodeRole role)
     {
         try
         {

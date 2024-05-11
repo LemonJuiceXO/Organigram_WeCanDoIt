@@ -1,0 +1,7 @@
+@page "/FinishAdminRegistration/{adminId}/{Token}"
+<CompleteAdminRegistrationComponent adminID="@adminId" @rendermode="InteractiveServer"></CompleteAdminRegistrationComponent>
+
+@code {
+     [Parameter] public string adminId { get; set; }
+     [Parameter] public string Token { get; set; }
+}

@@ -1,0 +1,47 @@
+.assignAdminContainer{
+    background: linear-gradient(to top, #226eb9, #16a881);
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+.assignAdminForm{
+    height: 50%;
+    width:  40%;
+    background-color: white;
+    border-radius: 1rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 1rem;
+    gap: 2rem;
+}
+.assignAdminForm input{
+    border: 1px black solid;
+    width: 90%;
+    border-radius: 1rem;
+    height: 4rem;
+    text-align: center;
+    transition: outline 300ms ease-in-out;
+}
+.assignAdminForm input:focus{
+    outline: 2px #0ea4d2 solid;
+    border: none;
+}
+.assignAdminForm button{
+    padding: 1rem;
+    width: 10rem;
+    border: 1px black solid;
+    background-color: #168ad2;
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: color,background-color ease-in-out 300ms;
+    
+}
+.assignAdminForm button:hover{
+    background-color: #0a99f1;
+    color: white;
+}

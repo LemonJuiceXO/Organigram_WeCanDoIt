@@ -1,0 +1,18 @@
+@using Components.SharedComponents
+
+<head>
+    <link rel="stylesheet" href="/_content/Components/CSS/CreateNode/AssignAdmin.css"/>
+</head>
+
+<div class="assignAdminContainer">
+    @if (isDialogShown)
+    {
+        <LoadingComponent isLoading="isLoading" navigateButton="false"></LoadingComponent>  
+    }
+    
+    <div class="assignAdminForm">
+        <input type="email" placeholder="البريد الالكتروني للادمين" @bind="firstEmail"/>
+        <input type="email" placeholder="تأكيد البريد الالكتروني" @bind="confirmedEmail">
+        <button @onclick="submitSendEmail">تأكيد</button>
+    </div>
+</div>

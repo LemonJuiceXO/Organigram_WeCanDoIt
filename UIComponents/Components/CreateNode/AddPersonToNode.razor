@@ -3,10 +3,11 @@
 </head>
 
 <div class="add-person-to-node-container">
+    
     <div class="add-person-to-node-container-content">
         <svg class="close-add-person" @onclick="closeForm" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
-        <select class="select-person-role" @bind="nodePerson.RoleId">
-            
+        <select  class="select-person-role" @bind="nodePerson.RoleId">
+            <option value="@Guid.Empty" disabled="disabled">Select a Role</option>
             @foreach (var role in roles)
             {
                 <option value="@role.RoleId">@role.RoleName</option>
@@ -15,6 +16,6 @@
         </select>
         <input type="text" placeholder="Person Name" @bind="nodePerson.Nom"/>
         <button class="add-person-to-node-button" @onclick="addPersonToNode">Add Person</button>
-        
-    </div> 
+
+    </div>
 </div>

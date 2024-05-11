@@ -1,0 +1,31 @@
+<head>
+    <link rel="stylesheet" href="/_content/Components/CSS/CreateNode/NodeMenu.css"/>
+</head>
+
+<div class="options-menu">
+    
+    <svg class="close" @onclick="closeMenu" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+
+    @childContent
+
+    @if (isSucess)
+    {
+        <div class="success-dialog">
+            <label>@successDialog</label>
+        </div>
+    }
+
+
+</div>
+@code
+{
+    [Parameter] public RenderFragment childContent { get; set; }
+    [Parameter] public string successDialog { get; set; }
+    [Parameter] public bool isSucess { get; set; }
+    [Parameter] public EventCallback closeMenu{get; set; }
+
+    private async Task close()
+    {
+       await closeMenu.InvokeAsync();
+    }
+}

@@ -1,0 +1,55 @@
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@inherits LayoutComponentBase
+<head>
+    <link rel="stylesheet" href="/_content/Components/CSS/Nav/NavBar.css"/>
+</head>
+
+<nav id="navBar" class="navStatic" >
+
+    <ul>
+        <li class="@(currentPage.ToUpper().Contains("HOME") ? "selectedTab" : "") navTab" onclick="selectTab(this)"><a href="/Home">الرئيسية</a></li>
+        <li class="@(currentPage.ToUpper().Contains("TEST") ? "selectedTab" : "") navTab" onclick="selectTab(this)"><a href="/Test">المخطط</a></li>
+        <li class="@(currentPage.ToUpper().Contains("Menu") ? "selectedTab" : "") navTab" onclick="selectTab(this)"><a href="/Test">الاعدادات</a></li>
+        <li class="@(currentPage.ToUpper().Contains("Pe") ? "selectedTab" : "") navTab" onclick="selectTab(this)"><a href="/Test">حولنا</a></li>
+        
+        @if (userClaims.Find(user => user.Value.Equals("Manager"))!=null)
+        {
+            <li class="@(currentPage.ToUpper().Contains("Pe") ? "selectedTab" : "") navTab" onclick="selectTab(this)"><a href="/Test">قائمة التحكم</a></li>
+
+        } 
+    </ul>
+    
+</nav>
+
+
+
+
+@Body
+
+  
+
+  
+
+
+
+
+
+<script src="/_content/Components/JS/NavBar.js"></script>
+
+@code
+{
+    [Inject] AuthenticationStateProvider authenticationStateProvider { get; set; }
+    private AuthenticationState authenticationState;
+    private List<Claim> userClaims;
+    [Inject] NavigationManager NavigationManager { get; set; }
+    private string currentPage;
+    
+    protected override async Task OnInitializedAsync()
+    {
+       authenticationState = await authenticationStateProvider.GetAuthenticationStateAsync();
+       userClaims = (authenticationState.User is not null) ? authenticationState.User.Claims.ToList() : null;
+        currentPage = NavigationManager.Uri;
+    }
+
+}

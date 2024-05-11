@@ -1,0 +1,46 @@
+.dialogContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(16, 16, 16, 0.49);
+    z-index: 1000;
+    gap: 1rem;
+}
+
+.dialogContainer svg{
+    width: 10rem;
+}
+.dialogContainer button{
+    padding: 1rem;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 1rem;
+    transition: color,background-color ease-in-out 300ms;
+    cursor: pointer;
+}
+.dialogContainer button:hover{
+    background-color: #0cd782;
+    color: white;
+}
+@keyframes animateLoading {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+.LoadingIcon{
+    border-top: 5px #ffffff solid;
+    animation: animateLoading infinite forwards ease-in-out 1s;
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+}

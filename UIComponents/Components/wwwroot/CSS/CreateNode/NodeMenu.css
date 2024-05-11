@@ -1,0 +1,116 @@
+.options-menu{
+    animation: showMenu 800ms ease-in-out;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.71);
+    border-radius: 5px;
+    position: absolute;
+    top: -30%;
+    right: -60%;
+    width: 150px;
+    height: 15rem;
+    padding: 10px;
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+    filter: drop-shadow(12px 12px 6px rgba(0, 0, 0, 0.45));
+}
+.options-menu-content{
+    position: relative;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.options-menu.hidden{
+    opacity: 0;
+}
+
+.options-menu input ,.options-menu select{
+    width: 100%;
+    border-radius: 1rem;
+}
+.options-menu button{
+    background-color: white;
+    border-radius: 1rem;
+    height: 2rem;
+    border: none;
+    transition: all 300ms ease-in-out;
+    color: black;
+    cursor: pointer;
+    position: relative;
+    margin-top: 1rem;
+}
+.options-menu button:hover{
+    background-color: #168ad2 !important;
+    color: white;
+}
+.splitter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.splitter >input{
+    flex-grow: 1;
+    padding: 5px;
+    text-align: center;
+}
+
+@keyframes animateSuccess {
+   0%{
+       scale: 0;
+   }
+    30%{
+        scale: 0.3; 
+    }
+    50%{
+        scale: 0.6; 
+    }
+    70%{
+        scale: 1; 
+    }
+    90%{
+        scale: 0.8; 
+    }
+    100%{
+        scale: 1;
+    }
+}
+.success-dialog{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 2, 2, 0.76);
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+
+}
+.success-dialog label{
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 0.8rem;
+    background-color: #0cc957;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    animation: animateSuccess 300ms ease-in-out forwards;
+}
+.close{
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    top: 5px;
+    right: 5px;
+    background-color:   #ce0937;
+    border-radius: 50%;
+    transition: all ease-in-out 300ms;
+}
+
+.close *{
+    fill: #ffffff;
+}
+.close:hover{
+    background-color: #f30a41;
+}

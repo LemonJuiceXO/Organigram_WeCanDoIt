@@ -1,0 +1,51 @@
+@using Org.Domains.Nodes
+@using System.Drawing
+@using IAGE.Shared
+@using Microsoft.JSInterop
+<link rel="stylesheet" href="/_content/Components/CSS/CreateNode/SubNodeLayout.css"/>
+
+<div class="options-menu" @onmouseleave="closeOptionsMenu" id="menu">
+ <input placeholder="Node Name" @bind="node.Name" style=" border: 1px white solid"/>    
+ <select @onchange="change">
+  @foreach (var node in potentialSubNodes)
+  {
+   @if (node == Parent)
+   {
+    <option selected="selected" value="@node.NodeId">@node.Name</option>
+   }
+   else
+   {
+    <option value="@node.NodeId">@node.Name</option>
+   }
+
+  }
+ </select>
+</div>
+<script src="/_content/Components/JS/OptionsMenu.js">
+</script>
+@code {
+ 
+ [Parameter] public Node node { get; set; }
+ [Parameter] public List<Node>potentialSubNodes { get; set; }
+ [Parameter] public Point p { get; set; }
+ [Inject] IJSRuntime js { get; set; }
+ [Parameter] public Node Parent { get; set; }
+ [Parameter]public EventCallback<Node> chooseParent { get; set; }
+ [Parameter] public EventCallback close { get; set; }
+ 
+ private async Task change(ChangeEventArgs args)
+ {
+  Guid targetNodeId = Guid.Parse(args.Value.ToString());
+  Node targetNode = potentialSubNodes.FirstOrDefault(node1 => node1.NodeId.CompareTo(targetNodeId) == 0);
+  Parent = targetNode;
+  chooseParent.InvokeAsync(Parent);
+  
+   js.InvokeVoidAsync("linkNodes",targetNode.NodeId.ToString(),node.NodeId.ToString());
+ }
+
+ private async Task closeOptionsMenu()
+ {
+  await js.InvokeVoidAsync("closeMenu");
+  close.InvokeAsync();
+ }
+}

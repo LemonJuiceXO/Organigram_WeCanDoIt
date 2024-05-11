@@ -1,0 +1,61 @@
+@using Org.Domains.NodeTypes
+@using Components.CreateNode
+@using Components.SharedComponents
+
+<head>
+    <link rel="stylesheet" href="/_content/Components/CSS/CreateNode/CreateNode.css"/>  
+    <style>
+        .nodes-container{
+        width: 95%;
+        height: 90%;
+      }
+        .saveIcon{
+        height: max(5rem,10%);
+        }
+        .saveIcon:hover .saveIconLabel{
+        background-color: black;
+        }
+    </style>
+</head>
+
+
+@if (showCreateNodeType)
+{
+    <CreateNodeTypeForm close="closeAddNodeType" createNode="addNodeTypeToList" nodeTypesCount="nodeTypes.Count"></CreateNodeTypeForm>
+}
+
+
+<div class="create-node-container">
+    
+    @if (isSuccessDialogShown)
+    {
+        <LoadingComponent isLoading="isLoading" navigateButton="true" navigateTo="navigateToNextPage"></LoadingComponent>
+    }
+
+    <div class="add-icon-container">
+        <div class="add-icon-label">
+            <label class="create-node-label">انشاء هيكل جديد</label>
+            <svg class="add-node-type" @onclick="() => showCreateNodeType = true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M20.9999 9.88379C21.0033 9.63406 20.8823 9.3827 20.636 9.23825L13.1419 4.84334C12.4534 4.43956 11.6007 4.43847 10.9111 4.84047L3.36938 9.23727C3.12196 9.38152 3.00042 9.63347 3.00386 9.88379H2.99995V14.3148H3.00408C3.01115 14.5585 3.13674 14.7991 3.38001 14.9355L10.9431 19.1778C11.6163 19.5554 12.4378 19.5543 13.11 19.175L20.6253 14.9346C20.8675 14.7979 20.9926 14.5579 20.9996 14.3148L20.9999 9.88379ZM4.76444 10.4474C4.58407 10.3456 4.35534 10.4093 4.25357 10.5897C4.15179 10.7701 4.21551 10.9988 4.39589 11.1006L10.7548 14.6885C11.5471 15.1355 12.516 15.1331 13.306 14.6823L19.5841 11.0997C19.7639 10.997 19.8265 10.768 19.7239 10.5881C19.6212 10.4083 19.3922 10.3456 19.2123 10.4483L12.9343 14.0309C12.3735 14.3509 11.6857 14.3526 11.1234 14.0353L4.76444 10.4474Z" fill="#ffffff"></path> </g></svg>
+        </div>
+
+    </div>
+
+    <div class="nodes-container" id="listNodes">
+
+        @foreach (var nodeType in nodeTypes)
+
+        {
+            <NodeTypeLayout nodeType="nodeType" availableNodes="nodeTypes" nodeNumber="nodeNumber += 1"></NodeTypeLayout>
+        }
+
+
+    </div>
+    <div class="add-icon-label saveIcon">
+        <label class="create-node-label saveIconLabel">حفض</label>
+        <svg @onclick="saveNodeTypes" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="m16 0c8.836556 0 16 7.163444 16 16s-7.163444 16-16 16-16-7.163444-16-16 7.163444-16 16-16zm6.4350288 11.7071068c-.3905242-.3905243-1.0236892-.3905243-1.4142135 0l-6.3646682 6.3632539-3.5348268-3.5348268c-.3905242-.3905243-1.0236892-.3905243-1.41421352 0-.39052429.3905243-.39052429 1.0236893 0 1.4142136l4.24264072 4.2426407c.3905243.3905242 1.0236892.3905242 1.4142135 0 .0040531-.0040531.0080641-.0081323.012033-.0122371l7.0590348-7.0588308c.3905243-.3905242.3905243-1.0236892 0-1.4142135z" fill="#ffffff" fill-rule="evenodd"></path></g></svg>
+    </div>
+
+
+</div>
+
+

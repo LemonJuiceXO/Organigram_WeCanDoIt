@@ -1,0 +1,19 @@
+<head>
+    <link rel="stylesheet" href="/_content/Components/CSS/CreateNode/NodeMenu.css"/>
+</head>
+<StandardMenu isSucess="isSuccess" successDialog="تم اضافة منصب بنجاح"  closeMenu="closeAddNodeRoleToNode">
+    <div class="options-menu-content">
+        
+        <input type="text" placeholder="Role Name" @bind="createdRole.RoleName"/>
+        <input type="text" placeholder="Role Code" @bind="createdRole.RoleCode"/>
+        <div class="splitter">
+            <input type="number" placeholder="MIN" @bind="createdRole.MinValue"/>
+            <input type="number" placeholder="MAX" @bind="createdRole.MaxValue"/>
+        </div>
+
+        <button @onclick="createNewRole">اضافة منصب</button>
+    </div>
+    
+</StandardMenu>
+
+

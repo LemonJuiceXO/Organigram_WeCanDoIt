@@ -199,6 +199,7 @@ public class OrgTypeStorage
                targetNode.SubNodes.Add(new NodeChild()
                {
                    NodeTypeId = row["SubNodeId"].AsGuid(),
+                   NodeTypeName = row["Name"].AsString(),
                    MinValue = row["MinValue"].AsInt(),
                    MaxValue = row["MaxValue"].AsInt()
                });

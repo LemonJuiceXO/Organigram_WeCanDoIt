@@ -12,4 +12,13 @@
       <ProjectReference Include="..\..\UIComponents\Components\Components.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="FluentEmail.Core" Version="3.0.2" />
+      <PackageReference Include="FluentEmail.Smtp" Version="3.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Comps\Pages\" />
+    </ItemGroup>
+
 </Project>

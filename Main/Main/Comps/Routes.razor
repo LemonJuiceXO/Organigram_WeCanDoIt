@@ -1,6 +1,7 @@
-﻿<Router AppAssembly="typeof(Program).Assembly">
+﻿@using Components.Pages
+<Router AppAssembly="typeof(Program).Assembly" AdditionalAssemblies="new []{typeof(LoginPage).Assembly}">
     <Found Context="routeData">
-        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)"/>
+        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
         <FocusOnNavigate RouteData="routeData" Selector="h1"/>
     </Found>
 </Router>

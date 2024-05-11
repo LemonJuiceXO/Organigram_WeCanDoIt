@@ -1,0 +1,23 @@
+<head>
+    <link rel="stylesheet" href="/_content/Components/CSS/CreateNode/CreateNodeForm.css"/>
+</head>
+
+<div class="create-node-form-container">
+
+    <div class="create-node-form-container-content">
+        
+        <svg class="close-create-node" @onclick="closeForm" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+        
+        <select @bind="nodeToCreate.TypeId">
+            @foreach (var nodetype in NodeTypes)
+            {
+                <option value="@nodetype.Id">@nodetype.Name</option>
+            }
+        </select>
+
+        <input type="text" placeholder="Node Name" @bind="nodeToCreate.Name" required="required"/>
+        <input type="text" placeholder="Node Code" @bind="nodeToCreate.Code" required="required"/>
+        <button class="create-node-form-button" @onclick="SubmitNewNode">Confirm</button>
+    </div>
+
+</div>

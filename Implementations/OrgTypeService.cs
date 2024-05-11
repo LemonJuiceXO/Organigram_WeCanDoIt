@@ -1,4 +1,7 @@
-﻿using System.Transactions;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Transactions;
 using Microsoft.Extensions.Configuration;
 using Org.Apps;
 using Org.Domains.NodeTypes;
@@ -31,11 +34,16 @@ public class OrgTypeService : IOrgTypeService
             await validateNodeForInsertion(nodeType);
 
             await orgTypeStorage.InsertNodeType(nodeType.Id, nodeType.Code, nodeType.Name);
-
+            
+            foreach (NodeRole nodeRole in nodeType.Roles)
+            {
+                await roleService.CreateRole(nodeRole);
+            }
+            
             foreach (var role in nodeType.Roles) await orgTypeStorage.AddRoleToNodeType(nodeType.Id, role);
 
             foreach (var child in nodeType.SubNodes) await orgTypeStorage.AddSubNodeToNodeType(nodeType.Id, child);
-
+            
             scope.Complete();
         }
         finally
@@ -61,18 +69,12 @@ public class OrgTypeService : IOrgTypeService
 
     private async ValueTask validateNodeForInsertion(NodeType nodeType)
     {
+        
         if (await GetNodeTypeById(nodeType.Id) is not null)
             throw new Exception("ID du Noeud existe déja");
 
         if (await GetNodeTypeByCode(nodeType.Code) is not null)
             throw new Exception("Code du noeud existe déja");
-
-        foreach (var nodeRole in nodeType.Roles)
-            if (await roleService.GetRoleById(nodeRole.RoleId) is null)
-                throw new Exception("Le role n'existe pas");
-
-        foreach (var nodeChild in nodeType.SubNodes)
-            if (await GetNodeTypeById(nodeChild.NodeTypeId) is null)
-                throw new Exception("Le sous noued n'existe pas");
+        
     }
 }

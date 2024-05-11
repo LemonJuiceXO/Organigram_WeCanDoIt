@@ -1,4 +1,5 @@
-﻿using Org.Domains.Persons;
+﻿using Org.Domains.NodeTypes;
+using Org.Domains.Persons;
 using Org.Domains.Shared;
 
 namespace Org.Apps;
@@ -9,5 +10,5 @@ public interface IRoleService
 
     ValueTask<Role?> GetRoleById(Guid roleRoleId);
 
-    ValueTask<Result> CreateRole(Role role);
+    ValueTask<Result> CreateRole(NodeRole role);
 }

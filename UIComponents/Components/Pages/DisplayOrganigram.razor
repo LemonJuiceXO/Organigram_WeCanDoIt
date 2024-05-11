@@ -1,0 +1,22 @@
+@page "/DisplayOrganigram"
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+
+@rendermode InteractiveServer
+@word
+
+
+@code{
+   
+   [Inject] AuthenticationStateProvider _provider { get; set; }
+   private string word;
+   protected override async Task OnInitializedAsync()
+   {
+      var state=   await _provider.GetAuthenticationStateAsync();
+      var user = state.User.Claims.ToList();
+      word = user.Find(claim => claim.Type == ClaimTypes.Email).Value.ToString();
+   }
+
+
+
+}

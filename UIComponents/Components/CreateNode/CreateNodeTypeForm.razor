@@ -1,0 +1,16 @@
+<head>
+    <link rel="stylesheet" href="/_content/Components/CSS/CreateNode/CreateNodeForm.css"/>
+</head>
+
+<div class="create-node-form-container">
+
+    <div class="create-node-form-container-content">
+        
+        <svg class="close-create-node" @onclick="closeForm" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+        
+        <input type="text" placeholder="اسم الهيكل" @bind="createdNodeType.Name" required="required"/>
+        <input type="text" placeholder="رمز الهيكل" @bind="createdNodeType.Code" required="required"/>
+        <button class="create-node-form-button" @onclick="SubmitNewNodeType">تأكيد</button>
+    </div>
+
+</div>

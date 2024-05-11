@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using Org.Apps;
 using Org.Domains.Nodes;
 using Org.Storages;
@@ -25,5 +26,10 @@ public class NodeService : INodeService
     public async Task AddPersonToNode(Guid nodeId, NodePerson person)
     {
         await nodeStorage.AddPersonToNode(nodeId, person);
+    }
+
+    public async Task AddSubNodeToNode(Guid nodeId, Node subNode)
+    {
+        await nodeStorage.InsertSubNode(nodeId,subNode);
     }
 }
